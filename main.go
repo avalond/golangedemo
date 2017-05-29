@@ -2,8 +2,7 @@ package main
 
 import (
 	"fmt"
-	"awesomeProject/config"
-
+	"golangedemo/config"
 )
 
 func main() {
