@@ -1,13 +1,27 @@
 package main
 
 import (
-	"fmt"
-	"golangedemo/config"
+	"net/http"
+	"golangedemo/code/error"
 )
 
 func main() {
-	SERVER_PORT := config.ConstonsKey("server_port")
+	setPort()
+	setHandler()
 
+}
+func setPort() {
+	const SERVER_PORT string = ":8088"
 
-	fmt.Println("hello golange "+ SERVER_PORT)
+	println("start server at" + SERVER_PORT)
+	//port
+	e := http.ListenAndServe(SERVER_PORT, nil)
+	if e != nil {
+		panic(e)
+	}
+
+}
+
+func setHandler() {
+	http.HandleFunc("/", error.NotFoundHandler)
 }
